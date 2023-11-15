@@ -10,6 +10,10 @@ const GlobalStyle = createGlobalStyle`
 
     a {
       text-decoration: none;
+      color: #fff;
+      &:hover {
+        opacity: 0.9;
+      }
     }
 `;
 
