@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Button from "./Button";
 import styled from "styled-components";
 
@@ -16,6 +15,10 @@ export default () => (
 
     <Button href="/about" passHref>
       Hakkımda
+    </Button>
+
+    <Button href="/blog" passHref>
+      Blog
     </Button>
   </HeaderDiv>
 );
