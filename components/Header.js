@@ -1,11 +1,25 @@
 import Link from "next/link";
+import Button from "./Button";
+import styled from "styled-components";
 
+const HeaderDiv = styled.div`
+  padding: 30px;
+  display: flex;
+  gap: 20px;
+  background-color: #000;
+`;
 export default () => (
-  <div>
-    <Link href="/">Anasayfa</Link>
+  <HeaderDiv>
+    <Button href="/" passHref>
+      Anasayfa
+    </Button>
 
-    <Link href="/about">Hakkımızda</Link>
+    <Button href="/about" passHref>
+      Hakkımda
+    </Button>
 
-    <Link href="/contact">İletişim</Link>
-  </div>
+    <Button href="/contact" passHref>
+      İletişim
+    </Button>
+  </HeaderDiv>
 );
