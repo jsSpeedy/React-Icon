@@ -17,9 +17,5 @@ export default () => (
     <Button href="/about" passHref>
       Hakkımda
     </Button>
-
-    <Button href="/contact" passHref>
-      İletişim
-    </Button>
   </HeaderDiv>
 );

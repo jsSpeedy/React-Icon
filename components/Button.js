@@ -6,9 +6,6 @@ const StyledLink = styled.div`
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 export default ({ children, href }) => {
