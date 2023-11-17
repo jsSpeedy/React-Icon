@@ -1,21 +1,8 @@
+import fs from "fs";
+import matter from "gray-matter";
+import Link from "next/link";
 import styled from "styled-components";
 import Layout from "../../components/Layout";
-import Button from "../../components/Button";
-
-const blogContents = [
-  {
-    href: "gunluk-1",
-    title: "Günlük yazı 1",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  },
-  {
-    href: "gunluk-2",
-    title: "Günlük yazı 2",
-    content:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem",
-  },
-];
 
 const H2 = styled.h2`
   margin: 0;
@@ -33,7 +20,7 @@ const BlogWrapper = styled.div`
   gap: 10px;
 `;
 
-export default () => (
+export default ({ posts }) => (
   <Layout title="Blog">
     There are many variations of passages of Lorem Ipsum available, but the
     majority have suffered alteration in some form, by injected humour, or
@@ -47,13 +34,49 @@ export default () => (
     always free from repetition, injected humour, or non-characteristic words
     etc.
     <BlogWrapper>
-      {blogContents.map(({ title, content, href }, index) => (
-        <BlogDiv key={index}>
-          <H2>{title}</H2>
-          <p>{content}</p>
-          <Button href={`blog/${href}`}>Devamı</Button>
-        </BlogDiv>
-      ))}
+      {posts.map((post) => {
+        //extract slug and frontmatter
+        const { slug, frontmatter } = post;
+        //extract frontmatter properties
+        const { title, author, category, date, bannerImage, tags } =
+          frontmatter;
+
+        //JSX for individual blog listing
+        return (
+          <article key={title}>
+            <Link href={`/blog/${slug}`}>
+              <h1>{title}</h1>
+            </Link>
+            <h3>{author}</h3>
+            <h3>{date}</h3>
+          </article>
+        );
+      })}
     </BlogWrapper>
   </Layout>
 );
+
+//Generating the Static Props for the Blog Page
+export async function getStaticProps() {
+  // get list of files from the posts folder
+  const files = fs.readdirSync("posts");
+
+  // get frontmatter & slug from each post
+  const posts = files.map((fileName) => {
+    const slug = fileName.replace(".md", "");
+    const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8");
+    const { data: frontmatter } = matter(readFile);
+
+    return {
+      slug,
+      frontmatter,
+    };
+  });
+
+  // Return the pages static props
+  return {
+    props: {
+      posts,
+    },
+  };
+}
