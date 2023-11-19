@@ -41,7 +41,7 @@ export default ({ children, title }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by vercel
+          Powered by vercel - Sun Nov 19 2023 14:32:22 GMT+0300 (GMT+03:00)
         </a>
       </FooterInner>
     </Footer>
