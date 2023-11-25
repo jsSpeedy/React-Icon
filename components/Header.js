@@ -27,6 +27,10 @@ export default () => (
       <Button href="/blog" passHref>
         Blog
       </Button>
+
+      <Button href="/contact" passHref>
+        İletişim
+      </Button>
     </HeaderInner>
   </HeaderDiv>
 );
