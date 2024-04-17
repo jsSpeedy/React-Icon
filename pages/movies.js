@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
+import Image from "next/image";
 
 const MovieCard = styled.div`
   display: grid;
@@ -32,7 +33,13 @@ export default function Movies() {
       <MovieList>
         {data.map((item) => (
           <MovieCard key={item.id}>
-            <img width="200" src={item.posterURL} loading="lazy" />
+            <Image
+              width={200}
+              height={296}
+              alt={item.title}
+              src={item.posterURL}
+              loading="lazy"
+            />
             <b>{item.title}</b>
           </MovieCard>
         ))}
