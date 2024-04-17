@@ -24,6 +24,10 @@ export default () => (
         Hakkımda
       </Button>
 
+      <Button href="/movies" passHref>
+        Filmler
+      </Button>
+
       <Button href="/blog" passHref>
         Blog
       </Button>
