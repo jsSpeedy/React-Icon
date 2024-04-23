@@ -35,13 +35,10 @@ export default ({ posts }) => (
     etc.
     <BlogWrapper>
       {posts.map((post) => {
-        //extract slug and frontmatter
         const { slug, frontmatter } = post;
-        //extract frontmatter properties
         const { title, author, category, date, bannerImage, tags } =
           frontmatter;
 
-        //JSX for individual blog listing
         return (
           <article key={title}>
             <Link href={`/blog/${slug}`}>
@@ -56,12 +53,9 @@ export default ({ posts }) => (
   </Layout>
 );
 
-//Generating the Static Props for the Blog Page
-export async function getStaticProps() {
-  // get list of files from the posts folder
+export async function getServerSideProps() {
   const files = fs.readdirSync("posts");
 
-  // get frontmatter & slug from each post
   const posts = files.map((fileName) => {
     const slug = fileName.replace(".md", "");
     const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8");
@@ -73,7 +67,6 @@ export async function getStaticProps() {
     };
   });
 
-  // Return the pages static props
   return {
     props: {
       posts,
