@@ -35,6 +35,10 @@ export default () => (
       <Button href="/contact" passHref>
         İletişim
       </Button>
+
+      <Button href="/hooks" passHref>
+        Hooks
+      </Button>
     </HeaderInner>
   </HeaderDiv>
 );
