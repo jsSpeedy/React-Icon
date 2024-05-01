@@ -1,6 +1,6 @@
-# Next.js SSG Blog
+# Next.js i18n
 
-SSG Blog Örneği
+i18n Örneği
 
 ## Kurulum
 
