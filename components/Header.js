@@ -1,5 +1,6 @@
 import Button from "./Button";
 import styled from "styled-components";
+import Icon from "./Icon";
 
 const HeaderDiv = styled.div`
   background-color: #000;
@@ -17,11 +18,13 @@ export default () => (
   <HeaderDiv>
     <HeaderInner>
       <Button href="/" passHref>
-        Anasayfa
+        <Icon icon="home" color="white" />
+        <span>Anasayfa</span>
       </Button>
 
       <Button href="/about" passHref>
-        Hakkımda
+        <Icon icon="user" color="white" />
+        <span>Hakkımda</span>
       </Button>
 
       <Button href="/movies" passHref>

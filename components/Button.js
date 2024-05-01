@@ -6,6 +6,9 @@ const StyledLink = styled.div`
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4px;
 `;
 
 export default ({ children, href }) => {
